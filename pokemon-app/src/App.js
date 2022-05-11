@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Landing, Login } from "./pages";
+import { Landing, List, Login } from "./pages";
 
 export const AppContext = createContext();
 
@@ -31,7 +31,8 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Landing />} />
-          <Route path="/login" element={<Login />} />
+          {isLogged ? null : <Route path="/login" element={<Login />} />}
+          {isLogged ?  <Route path="/list" element={<List />} /> : null}
         </Routes>
       </AppContext.Provider>
     </BrowserRouter>

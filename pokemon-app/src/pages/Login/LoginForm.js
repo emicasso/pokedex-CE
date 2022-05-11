@@ -2,9 +2,29 @@ import React from "react";
 import { useContext } from "react";
 import { LoginContex } from "./Login";
 
-export default function LoginForm() {
-  const { email, password, onEmailChange, onPasswordChange, handleClick } =
+export default function LoginForm({ onSuccess }) {
+  const { email, password, onEmailChange, onPasswordChange, setError } =
     useContext(LoginContex);
+
+  function handleClick() {
+    if (email !== "") {
+      if (password !== "") {
+        setError("");
+
+        window.localStorage.setItem("Logeado", true);
+        window.localStorage.setItem("User", email);
+
+        onSuccess();
+        console.log("te logeaste mostro");
+        return;
+      }
+    }
+
+    window.localStorage.setItem("Logeado", false);
+    console.log("intenta devuelta mostro");
+
+    setError("Datos Incorrectos");
+  }
 
   return (
     <div className="flex flex-col items-center justify-center  py-36 ">
@@ -72,6 +92,7 @@ export default function LoginForm() {
                 onClick={handleClick}
               >
                 <span className="mr-2 uppercase">Login</span>
+                {/* svg flecha */}
                 <span>
                   <svg
                     className="h-6 w-6"
