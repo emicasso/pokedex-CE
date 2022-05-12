@@ -1,11 +1,19 @@
-import {API} from "./api"
-
-
-export const getPokemones = async (id) => {
-    return API.get(`pokemon/${id}`);
+export const getPokemones = async (limit = 20, offset = 0) => {
+    try{
+        let url =`http://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+        const response = await fetch(url)
+        return await response.json()
+    }catch(error){
+        console.log("error: ", error)
+    }
 }
 
-
-export const getPagination = () => {
-    return API.get("pokemon?limit=20&offset=20");
+export const getPokemonData = async (url) => {
+    try{
+        const response = await fetch(url)
+        return await response.json()
+    }catch(error){
+        console.log("error: ", error)
+    }
 }
+

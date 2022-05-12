@@ -9,7 +9,7 @@ export default function Navbar() {
           <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-center">
             <div className="flex-shrink-0 flex items-center">
               <img
-                className="hidden lg:block h-12 w-auto"
+                className=" lg:block h-12 w-auto"
                 src={LogoNav}
                 alt="Pokemon"
               />

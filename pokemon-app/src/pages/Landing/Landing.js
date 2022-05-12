@@ -23,6 +23,7 @@ export default function Landing() {
       <main className="h-screen bg-[#F5DB13] justify-center align-center flex flex-col content-center">
         <Navbar />
         <div className="flex flex-col sm:flex-row items-center md:items-start sm:justify-center md:justify-start flex-auto content-center">
+          
           {/* LoginForm */}
           <LandingInfo />
 

@@ -3,10 +3,11 @@ import { useContext } from "react";
 import { LoginContex } from "./Login";
 
 export default function LoginForm({ onSuccess }) {
-  const { email, password, onEmailChange, onPasswordChange, setError } =
+  const { email, password, onEmailChange, onPasswordChange, setError, error } =
     useContext(LoginContex);
 
-  function handleClick() {
+  function handleClick(e) {
+    e.preventDefault();
     if (email !== "") {
       if (password !== "") {
         setError("");
@@ -15,14 +16,11 @@ export default function LoginForm({ onSuccess }) {
         window.localStorage.setItem("User", email);
 
         onSuccess();
-        console.log("te logeaste mostro");
         return;
       }
     }
 
     window.localStorage.setItem("Logeado", false);
-    console.log("intenta devuelta mostro");
-
     setError("Datos Incorrectos");
   }
 
@@ -35,7 +33,12 @@ export default function LoginForm({ onSuccess }) {
         <div className="mt-4 self-center text-xl sm:text-sm text-gray-800">
           Ingresa tus datos como entreandor Pokemon
         </div>
-        <div className="mt-10">
+        {error.length > 0 ? (
+          <div className="w-full text-center text-red-700 font-Karla border border-red-700 py-3 mt-5">
+            {error}
+          </div>
+        ) : null}
+        <div className="mt-6">
           <form action="#">
             <div className="flex flex-col mb-5 text-[#545644]">
               <label
@@ -110,6 +113,7 @@ export default function LoginForm({ onSuccess }) {
             </div>
           </form>
         </div>
+
       </div>
     </div>
   );
