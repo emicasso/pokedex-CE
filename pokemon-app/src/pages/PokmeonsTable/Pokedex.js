@@ -1,9 +1,18 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
 export default function Pokedex({ pokemon }) {
+  const navigate = useNavigate();
+
+  function handleClick(id){
+    return () =>{
+      navigate(`/pokemon/${id}`)
+    }
+  }
+
   return (
     <div className="flex flex-col">
-      <div className="bg-gray-200 shadow-2xl rounded-3xl p-4">
+      <div className="bg-gray-200 shadow-2xl rounded-3xl p-4" onClick={handleClick(pokemon.id)}>
         <div className="flex-none lg:flex ">
           {/* imagen */}
           <div className=" h-full w-full lg:h-48 lg:w-48  lg:mb-0 mb-3 bg-black rounded-2xl">
