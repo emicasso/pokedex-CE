@@ -33,7 +33,7 @@ export default function PokemonTable() {
           <div className="grid mt-8 gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 px-4 ">
             {/* card */}
             {pokemons.map((pokemon, i) => (
-              <Pokedex pokemon={pokemon} key={i} />
+              <Pokedex pokemon={pokemon} key={i} type = {pokemon.types[0].type.name} />
             ))}
           </div>
         </div>
